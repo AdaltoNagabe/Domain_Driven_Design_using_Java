@@ -15,6 +15,7 @@ public class ExemploCarro {
 
         //Exibir os valores dos atributos do objeto
 
+        System.out.println("Especificações Gol");
         System.out.println("Modelo: " + gol.modelo); //sout
         System.out.println("Ano " + gol.ano);
         System.out.println("Cor: " + gol.cor);
@@ -27,12 +28,13 @@ public class ExemploCarro {
         //Criar um novo objeto do tipo carro
         Carro chevett = new Carro();
 
-
         //Colocar valores para 2 atributos e exibir esses valores
         chevett.modelo = "TS";
         chevett.ano = 1980;
 
-
+        System.out.println("Especificações Chevett");
+        System.out.println("Modelo: " + chevett.modelo + " " + "Ano " + chevett.ano); //sout
+        System.out.println("Ano " + chevett.ano);
     }
 
 }
