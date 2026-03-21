@@ -7,6 +7,9 @@ public class ExemploEntradaDados {
         //criar o objeto para ler o teclado
         Scanner leitor = new Scanner(System.in);
 
+        System.out.println("Digite seu Nome: ");
+        String nomeAluno = leitor.next() + leitor.nextLine(); //DESSA FORMA LE A LINHA INTEIR INDEPENDENTE DE ESPACO
+
         System.out.println("Digite a nota da CP1: ");
         double cp1 = leitor.nextDouble(); //para ler um double vindo do usuario
 
@@ -30,12 +33,13 @@ public class ExemploEntradaDados {
         double mediachallenge = (challenge1 + challenge2) / 2;
 
         System.out.println("A MÉDIA DOS CHECK POINTS É: " + mediacp);
+        System.out.println("A MÉDIA DOS CHECK POINTS É: " + mediacp);
         System.out.println("A NOTA DA GLOBAL SOLUTION É: " + gs);
         System.out.println("A NOTA DO CHALLENGE É: " + mediachallenge);
 
         double mediasemestre = ((mediacp * 0.2) + (gs * 0.6) + (mediachallenge * 0.2));
 
-        System.out.println("SUA MEDIA FINAL É: " + mediasemestre);
+        System.out.println(nomeAluno + ", SUA MEDIA FINAL É: " + mediasemestre);
     }
 
 }
