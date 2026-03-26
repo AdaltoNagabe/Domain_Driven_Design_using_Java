@@ -9,4 +9,15 @@ public class Produto {
     public boolean disponivel;
     public Fornecedor nomefornecedor;
 
+    //Metodos (São as ações que os atributos podem executar) - Nota: Sempre um verbo
+    //Desconto
+    public double calcularDesconto(){
+        double desconto = preco * 0.2;
+        return desconto;
+    }
+    //Acrescimo preco
+    public void aumentarPreco(double porcentagem){
+        preco += preco * porcentagem / 100;
+    }
+
 }

@@ -34,22 +34,48 @@ public class Terminal {
         prod.codigo = codigo;
         prod.disponivel = disponivel;
 
-        //Colocar as informacoes no objeto Fornecedor
+        //Instanciar o Fornecedor
         Fornecedor forn = new Fornecedor();
 
-        //Colocar as informacoes no objeto produto
+        //Colocar as informacoes no objeto Fornecedor
         forn.cnpj = cnpj;
         forn.nomeFornecedor = nomeFornecedor;
 
+        //Colocar o fornecedor no produto
+        prod.nomefornecedor = forn;
 
-        //Exibir as informacoes do objeto produto
+        //Exibir as informacoes do objeto produto e fornecedor
         System.out.println("INFORMACOES DO PRODUTO");
+        System.out.println("----------------------");
         System.out.println("Fornecedor: " + forn.nomeFornecedor);
+        System.out.println("Nome Fornecedor: " + prod.nomefornecedor.nomeFornecedor);
         System.out.println("CPNJ: " + forn.cnpj);
         System.out.println("Produto: " + prod.nomeProduto);
         System.out.println("Codigo do Produto: " + prod.codigo);
         System.out.println("Valor Unitario: " + prod.preco);
         System.out.println("Disponivel: " + prod.disponivel);
+
+        //Chamando o metodo da classe produto
+        double descontoProduto = prod.calcularDesconto();
+
+        //Calculando o valor do desconto
+        double promocao = prod.calcularDesconto();
+        System.out.println("Desconto: " + promocao);
+
+        //Aqui solicita para o usuario entrar com a aliquota de aumento e quantidade do produto
+        System.out.println("Qual a porcentagem de aumento? ");
+        double porcentagem = leitorTeclado.nextDouble();
+        System.out.println("Qual a quantidade de " + nomeProduto);
+        double porcentagem = leitorTeclado.nextDouble();
+
+        //Chamando o metodo aumento
+        prod.aumentarPreco(porcentagem);
+
+        System.out.println("Novo preco do produto: " + prod.preco);
+
+        //Criar um metodo para calcular o valor total da compra:
+        //Dado a quantidade, calcular o valor da compra
+
 
     }
 }
