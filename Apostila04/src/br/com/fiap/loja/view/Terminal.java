@@ -65,16 +65,23 @@ public class Terminal {
         //Aqui solicita para o usuario entrar com a aliquota de aumento e quantidade do produto
         System.out.println("Qual a porcentagem de aumento? ");
         double porcentagem = leitorTeclado.nextDouble();
-        System.out.println("Qual a quantidade de " + nomeProduto);
-        double porcentagem = leitorTeclado.nextDouble();
+
 
         //Chamando o metodo aumento
         prod.aumentarPreco(porcentagem);
 
         System.out.println("Novo preco do produto: " + prod.preco);
 
-        //Criar um metodo para calcular o valor total da compra:
-        //Dado a quantidade, calcular o valor da compra
+        //Ler a quantidade
+        System.out.println("Qual a quantidade de " + nomeProduto);
+        int qtd = leitorTeclado.nextInt();
+
+        //Calcular o valor total
+        double valorTotal = prod.calcularValorTotal(qtd);
+        //Exibir o valor total
+
+        System.out.println("O valor total da compra e: " + valorTotal);
+
 
 
     }

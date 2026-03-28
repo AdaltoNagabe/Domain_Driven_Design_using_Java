@@ -20,4 +20,9 @@ public class Produto {
         preco += preco * porcentagem / 100;
     }
 
+    //Criar um metodo para calcular o valor total da compra:
+    //Dado a quantidade, calcular o valor da compra
+    public double calcularValorTotal(int quantidade){
+        return preco * quantidade;
+    }
 }
