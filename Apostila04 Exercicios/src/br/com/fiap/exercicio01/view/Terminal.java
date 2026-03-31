@@ -1,6 +1,6 @@
-package br.com.fiap.exercicio01.view;
+package br.com.fiap.view;
 
-import br.com.fiap.exercicio01.model.Aluno;
+import br.com.fiap.model.Aluno;
 import java.util.Scanner;
 
 public class Terminal {

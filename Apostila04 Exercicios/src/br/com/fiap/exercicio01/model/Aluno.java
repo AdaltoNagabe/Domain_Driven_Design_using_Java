@@ -1,4 +1,4 @@
-package br.com.fiap.exercicio01.model;
+package br.com.fiap.model;
 
 public class Aluno {
 
