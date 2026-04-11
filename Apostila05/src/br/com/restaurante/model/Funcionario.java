@@ -8,12 +8,24 @@ public class Funcionario {
     private double salarioFuncionario;
     private char sexoFuncionario;
 
-    double calculaPlr(){
-        return 0;
+    public String retornarSalario(){
+        return formatarReal(salarioFuncionario);
+    }
+    public String retornarPlr(){
+        double plr = calculaPlr();
+        return formatarReal(plr);
     }
 
-    void colocarEmFerias(){
+    private String formatarReal(double valor){
+        return "R$ " + valor;
+    }
 
+    public double calculaPlr(){
+        return salarioFuncionario * 3;
+    }
+
+    public void colocarEmFerias(){
+        this.funcionarioAtivo = false;
     }
 
     //Getters e Setters (Métodos para alterar e recuperar os valores de um atributo)
