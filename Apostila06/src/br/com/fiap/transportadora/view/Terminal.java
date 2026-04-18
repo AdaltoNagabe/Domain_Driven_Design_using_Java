@@ -16,7 +16,7 @@ public class Terminal {
         //O set sera interessante se quiser alterar o valor.
 
         Produto px = new Produto(2,"Celular",true,2,10);   //Usando o Construtor 1
-        Produto py = new Produto(3,"Bebida",25.5)                       //Usando o Construtor 2
+        Produto py = new Produto(3,"Bebida",25.5);                      //Usando o Construtor 2
 
     }
 

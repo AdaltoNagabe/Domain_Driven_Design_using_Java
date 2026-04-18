@@ -6,24 +6,32 @@ public class Funcionario {
     private Profissao profissao;
     private double salario;
 
+    //construtor padrao (vazio)
     public Funcionario(){
-
     }
+    //construtor com a matricula
     public Funcionario(long matricula){
         this.matricula = matricula;
     }
+    //construtor com matricula e nome
     public Funcionario(long matricula,String nome){
+        this.matricula = matricula;
         this.nome = nome;
     }
+    //construtor com matricula, nome e profissao
     public Funcionario(long matricula,String nome, Profissao profissao){
+        this(matricula,nome);
         this.profissao = profissao;
     }
-    public Funcionario(String nome, long matricula, Profissao profissao,double salario){
-        this(nome,matricula,profissao);
-        this.salario = salario;
+    //construtor com todos os atributos
+    //public Funcionario(String nome, long matricula, Profissao profissao,double salario){
+    //    this(matricula,nome,profissao);
+    //    this.salario = salario;
+    //}
+
+    public String exibirDados() {
+        return "Nome: " + nome + ", matricula: " + matricula + ", profissao: " + profissao.getNomeProfissao() + ", salario: " + salario;
     }
-
-
     public String getNome() {
         return nome;
     }
@@ -40,12 +48,12 @@ public class Funcionario {
         this.matricula = matricula;
     }
 
-    public profissao getProfissao() {
-        return Profissao;
+    public Profissao getProfissao() {
+        return profissao;
     }
 
-    public void setProfissao(profissao profissao) {
-        Profissao = profissao;
+    public void setProfissao(Profissao profissao) {
+        this.profissao = profissao;
     }
 
     public double getSalario() {
