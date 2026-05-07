@@ -11,7 +11,7 @@ public class TesteString {
 
         //Comparar se o nome é "Jose". Nao funciona apenas no If Else se nao usar o metodo equals
         //O metodo equalsIgnoreCase nao diferencia maiusculas e minusculas
-        if (nome.equalsIgnoreCase("Jose\n")){
+        if (nome.equalsIgnoreCase("Jose\n")){  //nao vamos fazer esse tipo de coisa nome == "adalto"
             System.out.println("O nome confere\n");
         }
         else{
