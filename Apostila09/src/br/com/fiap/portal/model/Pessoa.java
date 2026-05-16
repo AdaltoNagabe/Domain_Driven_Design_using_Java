@@ -6,6 +6,16 @@ public class Pessoa {
     private int idade;
     private Endereco endereco;
 
+        //criar um construtor com nome e cpf
+    public Pessoa(String nome, String cpf, int idade, Endereco endereco){
+        this.nome = nome;
+        this.cpf = cpf;
+        this.idade = idade;
+        this.endereco = endereco;
+    }
+
+    public Pessoa(){}
+
     public String getNome() {
         return nome;
     }
