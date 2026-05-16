@@ -5,8 +5,6 @@ public class Professor extends Pessoa {
     private String materia;
     private double salario;
 
-
-
     public String getMateria() {
         return materia;
     }

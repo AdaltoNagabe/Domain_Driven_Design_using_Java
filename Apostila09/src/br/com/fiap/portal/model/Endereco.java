@@ -1,10 +1,11 @@
 package br.com.fiap.portal.model;
 
 public class Endereco {
+
     private String logradouro;
     private String complemento;
 
-    public Endereco(String logradouro, String complemento){
+    public Endereco(String logradouro, String complemento) {
         this.logradouro = logradouro;
         this.complemento = complemento;
     }
