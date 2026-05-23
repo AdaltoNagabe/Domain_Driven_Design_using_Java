@@ -3,13 +3,19 @@ package br.com.fiap.loja.model;
 public class Produto {
 
     private String nome;
-    private double preco;
+    protected double preco; //permite que as classes filhas acessem o atributo protected
     private String codigoBarra;
 
     public Produto(String nome, double preco, String codigoBarra) {
         this.nome = nome;
         this.preco = preco;
         this.codigoBarra = codigoBarra;
+    }
+
+    //sobrescrevemos a classe celular para trazer o valor certo
+    @Override
+    public String toString() {
+        return "Nome: " + nome + ", preço: " + preco + ", codigo de barras: " + codigoBarra;
     }
 
     //Calculo valor final com desconto em % de desconto
@@ -34,7 +40,7 @@ public class Produto {
             porcentagem = 30;
 
         }
-        return calcularDesconto(porcentagem);
+        return preco * (100 - porcentagem) / 100;
     }
 
 
