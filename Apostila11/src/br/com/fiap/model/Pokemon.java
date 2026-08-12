@@ -16,6 +16,11 @@ public class Pokemon {
         this.tipo = tipo;
         this.nome = nome;
         this.nivel = nivel;
+
+    }
+    @Override
+    public String toString(){
+        return "Nome: " + nome + " Tipo: " + tipo + ", Nivel: " + nivel;
     }
 
     //Getters e Setters

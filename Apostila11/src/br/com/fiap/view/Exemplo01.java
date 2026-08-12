@@ -12,7 +12,7 @@ public class Exemplo01 {
 
         //criar uma variavel para armazenar o nome dos alunos da turma
         //colecoes do java list e set
-        List<String> alunos = new ArrayList();
+        List<String> alunos = new ArrayList<>();
 
         //adicionar 2 nomes na lista
         alunos.add("Gabriel");
