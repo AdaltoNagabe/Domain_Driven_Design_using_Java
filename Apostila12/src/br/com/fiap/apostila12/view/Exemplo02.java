@@ -1,5 +1,7 @@
 package br.com.fiap.apostila12.view;
 
+import br.com.fiap.apostila12.exception.CupomInvalidoException;
+import br.com.fiap.apostila12.exception.DescontoAcimaDoPrecoException;
 import br.com.fiap.apostila12.model.Produto;
 
 import java.util.InputMismatchException;
@@ -8,23 +10,37 @@ import java.util.Scanner;
 public class Exemplo02 {
 
     static void main(String[] args) {
-        //Instanciar um produto com nome e preco
-        Produto prod1 = new Produto("Churros", 15);
+        //Instanciar um produto com nome e preço
+        Produto produto = new Produto("Churros", 15);
         Scanner leitor = new Scanner(System.in);
         try {
-            //Perguntar quanto e o desconto
-            System.out.println("Qual o desconto? : ");
+            //Perguntar quanto é o desconto
+            System.out.println("Quanto será o desconto?");
             double desconto = leitor.nextDouble();
             //Calcular o desconto
-            double valorFinal = prod1.darDesconto(desconto);
-            //Exibir o preco com desconto
+            double valorFinal = produto.darDesconto(desconto);
+            //Exibir o preço com desconto
             System.out.println("Valor com desconto: " + valorFinal);
 
-        } catch (RuntimeException e){
-            System.out.println("Número invalido!");
+            //Ler um cupom
+            System.out.println("Digite um cupom");
+            String cupom = leitor.next();
+            //Dar o desconto com o cupom
+            System.out.println(produto.darDesconto(cupom));
+
+            //Aumentar preço
+
+        } catch (CupomInvalidoException e){
+            System.err.println(e.getMessage() + " CUPOM INVALIDO");
+        } catch (InputMismatchException e){
+            System.err.println("O desconto deve ser um número");
+        } catch (DescontoAcimaDoPrecoException e) {
+            System.err.println(e.getMessage());
+            System.err.println("O desconto deve ser menor do que " + produto.getPreco());
+        } catch (RuntimeException  e) {
+            System.err.println(e.getMessage());
         } finally {
-            System.out.println("Fim do programa!");
             leitor.close();
         }
-    }
-}
+    }//main
+}//class
