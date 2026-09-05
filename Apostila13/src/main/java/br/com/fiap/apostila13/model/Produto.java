@@ -8,6 +8,12 @@ public class Produto {
     private double valor;
     private boolean temEstoque;
 
+    @Override
+    public String toString() {
+        return codigo + " " + nome + " Descricao: " + descricao
+                + " R$" + valor + " em estoque: " + (temEstoque?"sim":"nao");
+    }
+
     //Construtores (com todos atributos e vazio)
     public Produto() {
     }
