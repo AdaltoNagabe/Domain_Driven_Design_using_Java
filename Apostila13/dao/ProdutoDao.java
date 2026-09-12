@@ -4,7 +4,6 @@ import br.com.fiap.apostila13.exception.EntidadeNaoEncontradaException;
 import br.com.fiap.apostila13.factory.ConnectionFactory;
 import br.com.fiap.apostila13.model.Produto;
 
-import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,7 +35,7 @@ public class ProdutoDao {
         stmt.setBoolean(4, produto.isTemEstoque());
         //Executar o comando SQL no banco
         stmt.executeUpdate();
-        //Recuperar o id gerado
+        //Recuperar o ID gerado
         ResultSet resultSet = stmt.getGeneratedKeys();
         if (resultSet.next()){
             int codigo = resultSet.getInt(1);
@@ -45,84 +44,112 @@ public class ProdutoDao {
     }
 
     public Produto buscar(int id) throws SQLException, EntidadeNaoEncontradaException {
-        //Criar o Comando SQL
+        //Criar o comando SQL
         PreparedStatement stmt = conexao.prepareStatement(
-                "select * from t_jdbc_produto where cd_produto = ?");
+                "select * from T_JDBC_PRODUTO where cd_produto = ?");
+
         //Setar o valor no comando SQL
         stmt.setInt(1, id);
+
         //Executar o comando SQL
-        ResultSet resultSet = stmt.executeQuery(); //Executa comandos de pesquisa
-        //Validar se existe um produto no resultado, se não existir lança uma exception
+        ResultSet resultSet = stmt.executeQuery(); //executa o comando de pesquisa
+        //Validar se existe um produto no resultado, se nao existir lanca uma exception
         if (!resultSet.next()){
-            throw new EntidadeNaoEncontradaException("Produto não encontrado");
+            throw new EntidadeNaoEncontradaException("Produto nao encontrado");
         }
         return getProduto(resultSet);
     }
 
     private static Produto getProduto(ResultSet resultSet) throws SQLException {
-        //Recuperar as informações do ResulSet (codigo, nome, descrição, valor, estoque)
+        //Recuperar as informacoes do ResultSet (codigo, nome, dscricao, valor, estoque)
         int codigo = resultSet.getInt("cd_produto");
         String nome = resultSet.getString("nm_produto");
         String descricao = resultSet.getString("ds_produto");
         double valor = resultSet.getDouble("vl_produto");
         boolean temEstoque = resultSet.getBoolean("st_estoque");
-        //Cria o produto com os dados do banco e retorna no método
+
+        //Cria o produto com os dados do banco e retorna no metodo
         return new Produto(codigo, nome, descricao, valor, temEstoque);
     }
 
-    public List<Produto> listar() throws SQLException {
+
+
+    public Produto buscarValor(double valor) throws SQLException, EntidadeNaoEncontradaException {
         //Criar o comando SQL
-        PreparedStatement stmt = conexao
-                .prepareStatement("select * from t_jdbc_produto");
+        PreparedStatement stmt = conexao.prepareStatement(
+                "select * from T_JDBC_PRODUTO where vl_produto > ?");
+
+        //Setar o valor no comando SQL
+        stmt.setDouble(1, valor);
+
+        //Executar o comando SQL
+        ResultSet resultSet = stmt.executeQuery(); //executa o comando de pesquisa
+        //Validar se existe um produto no resultado, se nao existir lanca uma exception
+        if (!resultSet.next()){
+            throw new EntidadeNaoEncontradaException("Produto nao encontrado");
+        }
+        return getProduto(resultSet);
+    }
+
+
+
+
+
+    public List<Produto> listar() throws SQLException, EntidadeNaoEncontradaException {
+        //Criar o comando SQL
+        PreparedStatement stmt = conexao.prepareStatement(
+                "select * from T_JDBC_PRODUTO order by cd_produto");
+
         //Executar o comando SQL
         ResultSet resultSet = stmt.executeQuery();
-        //Criar a lista de Produto
+
+        //Criar a lista de produto
         List<Produto> lista = new ArrayList<>();
-        //Percorer todos os registros encontrados
+
+        //Percorrer todos os registros encontrados
         while (resultSet.next()) {
-            lista.add(getProduto(resultSet));
+
+            lista.add (getProduto(resultSet)); //Toda a parte de recuperar o produto do buscar foi resumido neste metodo
+
         }
         //Retornar a lista
         return lista;
     }
 
     public void atualizar(Produto produto) throws SQLException, EntidadeNaoEncontradaException {
-        //Criar o prepared statement com o comando SQL
-        PreparedStatement stmt = conexao.prepareStatement("update t_jdbc_produto set nm_produto = ?, " +
-                "ds_produto = ?, vl_produto = ?, st_estoque = ? where cd_produto = ?");
+        //Criar o comando SQL
+        PreparedStatement stmt = conexao.prepareStatement(
+                "update T_JDBC_PRODUTO set nm_produto = ?, ds_produto = ?, vl_produto = ?, st_estoque = ? where cd_produto = ?");
+
         //Setar os valores na query
         stmt.setString(1, produto.getNome());
         stmt.setString(2, produto.getDescricao());
         stmt.setDouble(3, produto.getValor());
-        stmt.setBoolean(4, produto.isTemEstoque());
+        stmt.setBoolean(4,produto.isTemEstoque());
         stmt.setInt(5, produto.getCodigo());
+
         //Executar o comando
-        int linhas = stmt.executeUpdate(); //Retorna o número de linhas afetadas no banco de dados
-        if (linhas == 0)
-            throw new EntidadeNaoEncontradaException("Produto não encontrado");
+        int linhas = stmt.executeUpdate(); //Retorna o numero de linhas afetadas no banco de dados
+        if (linhas == 0) {
+            throw new EntidadeNaoEncontradaException("Produto nao encontrado");
+        }
     }
 
     public void apagar(int id) throws SQLException, EntidadeNaoEncontradaException {
-        //Criar o preparedStatement com o comando SQL
-        PreparedStatement stmt = conexao.prepareStatement("delete from t_jdbc_produto where cd_produto = ?");
+        //Criar o comando SQL
+        PreparedStatement stmt = conexao.prepareStatement(
+                "delete from T_JDBC_PRODUTO where cd_produto = ?");
+
         //Setar o id no comando SQL
         stmt.setInt(1, id);
+
         //Executar o comando SQL
-        int linhas = stmt.executeUpdate();
+
         //Validar se realmente apagou algo no banco
-        if (linhas == 0)
-            throw new EntidadeNaoEncontradaException("Produto não encontrado");
-    }
-
-    public List<Produto> buscarPorPrecoMaior(double preco) throws SQLException {
-
-        PreparedStatement stmt = conexao.prepareStatement("select * from t_jdbc_produto where vl_produto > ?");
-        stmt.setDouble(1,preco);
-        ResultSet resultSet = stmt.executeQuery();
-        List<Produto> lista = new ArrayList<>();
-        while (resultSet.next())
-            lista.add(getProduto(resultSet));
-        return lista;
+        int linhas = stmt.executeUpdate();
+        if (linhas == 0){
+            throw new EntidadeNaoEncontradaException("Produto nao encontrado");
+        }
     }
 
 }

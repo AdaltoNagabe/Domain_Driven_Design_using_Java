@@ -10,8 +10,8 @@ public class Produto {
 
     @Override
     public String toString() {
-        return codigo + " " + nome + ", Descrição: " + descricao
-                + " R$" + valor + " em estoque: " + (temEstoque?"sim":"não");
+        return codigo + " " + nome + " Descricao: " + descricao
+                + " R$" + valor + " em estoque: " + (temEstoque?"sim":"nao");
     }
 
     public Produto(String nome, String descricao, double valor, boolean temEstoque) {
@@ -32,6 +32,8 @@ public class Produto {
         this.valor = valor;
         this.temEstoque = temEstoque;
     }
+
+
 
     //Getters e Setters
     public int getCodigo() {
