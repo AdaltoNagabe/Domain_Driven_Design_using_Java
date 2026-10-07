@@ -1,29 +1,26 @@
 package br.com.fiap.api.model;
 
 public class Imovel {
+
     private int codigo;
     private String descricao;
-    private double dimensao;
+    private double metros;
     private double valor;
+    private TipoImovel tipo;
 
-    public Imovel(){
+    public Imovel(){}
 
-    }
-
-    public Imovel(String descricao, double dimensao, double valor) {
+    public Imovel(String descricao, double metros, double valor) {
         this.descricao = descricao;
-        this.dimensao = dimensao;
+        this.metros = metros;
         this.valor = valor;
     }
 
-    public Imovel(int codigo, String descricao, double dimensao, double valor) {
+    public Imovel(int codigo, String descricao, double metros, double valor) {
         this.codigo = codigo;
         this.descricao = descricao;
-        this.dimensao = dimensao;
+        this.metros = metros;
         this.valor = valor;
-    }
-
-    public static void setId(int anInt) {
     }
 
     public int getCodigo() {
@@ -42,12 +39,12 @@ public class Imovel {
         this.descricao = descricao;
     }
 
-    public double getDimensao() {
-        return dimensao;
+    public double getMetros() {
+        return metros;
     }
 
-    public void setDimensao(double dimensao) {
-        this.dimensao = dimensao;
+    public void setMetros(double metros) {
+        this.metros = metros;
     }
 
     public double getValor() {
@@ -56,5 +53,13 @@ public class Imovel {
 
     public void setValor(double valor) {
         this.valor = valor;
+    }
+
+    public TipoImovel getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoImovel tipo) {
+        this.tipo = tipo;
     }
 }
