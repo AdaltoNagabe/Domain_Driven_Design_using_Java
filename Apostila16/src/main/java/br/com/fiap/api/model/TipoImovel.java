@@ -11,10 +11,6 @@ public class TipoImovel {
 
     public TipoImovel(){}
 
-    public TipoImovel(int codigo) {
-        this.codigo = codigo;
-    }
-
     public TipoImovel(String nome, LocalDateTime dataCadastro) {
         this.nome = nome;
         this.dataCadastro = dataCadastro;
